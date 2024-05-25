@@ -31,6 +31,9 @@
         }
       }
     },
+    "Invite Friend to Play" : {
+
+    },
     "Let's start!" : {
       "localizations" : {
         "it" : {
@@ -70,9 +73,6 @@
           }
         }
       }
-    },
-    "Match found!" : {
-
     },
     "OK!" : {
       "localizations" : {
@@ -178,6 +178,9 @@
           }
         }
       }
+    },
+    "Turn of: " : {
+
     },
     "Tutorial" : {
       "localizations" : {

@@ -23,6 +23,7 @@
 		3E6C13BE2BF7F82500373047 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C13BD2BF7F82500373047 /* Preview Assets.xcassets */; };
 		3E90784A2C010C2B00F34BA3 /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9078492C010C2B00F34BA3 /* OnlineView.swift */; };
 		3E90784D2C013E5000F34BA3 /* GKMatchManagerVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E90784C2C013E5000F34BA3 /* GKMatchManagerVCDelegate.swift */; };
+		3E9078502C02032D00F34BA3 /* OnlineGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E90784F2C02032D00F34BA3 /* OnlineGameView.swift */; };
 		3EBCE0832BFCEED600D5D37C /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCE0822BFCEED600D5D37C /* TutorialView.swift */; };
 		3ED67F932BF8C09600B2F400 /* MetalLibrary.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3ED67F922BF8C09600B2F400 /* MetalLibrary.metal */; };
 		3ED67F952BF8EEFE00B2F400 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3ED67F942BF8EEFE00B2F400 /* Localizable.xcstrings */; };
@@ -32,6 +33,7 @@
 		3ED67F9F2BF901E800B2F400 /* Game.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED67F9E2BF901E800B2F400 /* Game.json */; };
 		3ED67FA52BF9046100B2F400 /* Cool.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED67FA42BF9046100B2F400 /* Cool.json */; };
 		3ED67FAB2BF9072600B2F400 /* Rule.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED67FAA2BF9072600B2F400 /* Rule.json */; };
+		3ED6BF4E2C02415800A53C29 /* MatchManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6BF4D2C02415800A53C29 /* MatchManager2.swift */; };
 		3EDF8B812BF7FBAB00957F89 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDF8B802BF7FBAB00957F89 /* GameLogic.swift */; };
 		3EDF8B832BF80D1A00957F89 /* GameLogicConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDF8B822BF80D1A00957F89 /* GameLogicConditions.swift */; };
 		3EE961852BF8B34200DBC853 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE961842BF8B34200DBC853 /* Lottie */; };
@@ -56,6 +58,7 @@
 		3E9078492C010C2B00F34BA3 /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
 		3E90784B2C01352400F34BA3 /* TicTacToe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TicTacToe.entitlements; sourceTree = "<group>"; };
 		3E90784C2C013E5000F34BA3 /* GKMatchManagerVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKMatchManagerVCDelegate.swift; sourceTree = "<group>"; };
+		3E90784F2C02032D00F34BA3 /* OnlineGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGameView.swift; sourceTree = "<group>"; };
 		3EBCE0822BFCEED600D5D37C /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		3ED67F922BF8C09600B2F400 /* MetalLibrary.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MetalLibrary.metal; sourceTree = "<group>"; };
 		3ED67F942BF8EEFE00B2F400 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		3ED67F9E2BF901E800B2F400 /* Game.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Game.json; sourceTree = "<group>"; };
 		3ED67FA42BF9046100B2F400 /* Cool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cool.json; sourceTree = "<group>"; };
 		3ED67FAA2BF9072600B2F400 /* Rule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Rule.json; sourceTree = "<group>"; };
+		3ED6BF4D2C02415800A53C29 /* MatchManager2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager2.swift; sourceTree = "<group>"; };
 		3EDF8B802BF7FBAB00957F89 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 		3EDF8B822BF80D1A00957F89 /* GameLogicConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogicConditions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				3E2BFCB72BFE2C270012529A /* MatchManager.swift */,
+				3ED6BF4D2C02415800A53C29 /* MatchManager2.swift */,
 				3E90784C2C013E5000F34BA3 /* GKMatchManagerVCDelegate.swift */,
 				3E2BFCB92BFE2C2D0012529A /* AuthenticationStates.swift */,
 			);
@@ -188,6 +193,7 @@
 		3E90784E2C0200EA00F34BA3 /* Online */ = {
 			isa = PBXGroup;
 			children = (
+				3E90784F2C02032D00F34BA3 /* OnlineGameView.swift */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E5630832BF822BC0009B48B /* OnboardingViewModel.swift in Sources */,
+				3ED6BF4E2C02415800A53C29 /* MatchManager2.swift in Sources */,
 				3EDF8B812BF7FBAB00957F89 /* GameLogic.swift in Sources */,
 				3ED67F932BF8C09600B2F400 /* MetalLibrary.metal in Sources */,
 				3E2BFCBA2BFE2C2D0012529A /* AuthenticationStates.swift in Sources */,
@@ -308,6 +315,7 @@
 				3E5630872BF827AF0009B48B /* LottieAnimation.swift in Sources */,
 				3E56308B2BF82BBF0009B48B /* GameView.swift in Sources */,
 				3EBCE0832BFCEED600D5D37C /* TutorialView.swift in Sources */,
+				3E9078502C02032D00F34BA3 /* OnlineGameView.swift in Sources */,
 				3E90784A2C010C2B00F34BA3 /* OnlineView.swift in Sources */,
 				3E3925C02BFD107E0033F0E2 /* OnboardView.swift in Sources */,
 				3E90784D2C013E5000F34BA3 /* GKMatchManagerVCDelegate.swift in Sources */,

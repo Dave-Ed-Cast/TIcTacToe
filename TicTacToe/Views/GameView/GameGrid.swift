@@ -11,10 +11,12 @@ struct GameGrid: View {
     
     
     @ObservedObject var gameLogic: GameLogic
+    @ObservedObject var matchManager: MatchManager
     
     let col = Array(repeating: GridItem(.flexible()), count: 3)
     
     @State private var showLottieAnimation = false
+    @State private var index: Int = 0
     
     var body: some View {
         ZStack {
@@ -27,6 +29,7 @@ struct GameGrid: View {
                             let index = row * 3 + col
                             Button {
                                 gameLogic.buttonTap(index: index)
+                                matchManager.sendMoveToMatchManager(index: index)
                             } label: {
                                 Image(gameLogic.buttonLabel(index: index))
                                     .interpolation(.none)
@@ -36,6 +39,9 @@ struct GameGrid: View {
                         }
                     }
                 }
+            }
+            .onAppear{
+
             }
             
             if gameLogic.isGameOver ?? false {
@@ -52,11 +58,11 @@ struct GameGrid: View {
                         LottieAnimation(
                             name: "GameOver",
                             contentMode: .center,
-                            playbackMode: .playing(.toProgress(1, loopMode: .playOnce)), 
+                            playbackMode: .playing(.toProgress(1, loopMode: .playOnce)),
                             scaleFactor: 0.9)
-                            .background(Color.black.opacity(0.75))
-                            .cornerRadius(20)
-                            .padding()
+                        .background(Color.black.opacity(0.75))
+                        .cornerRadius(20)
+                        .padding()
                     }
                 }
                 .onAppear {
@@ -76,5 +82,5 @@ struct GameGrid: View {
 }
 
 #Preview {
-    GameGrid(gameLogic: GameLogic())
+    GameGrid(gameLogic: GameLogic(), matchManager: MatchManager(gameLogic: GameLogic()))
 }

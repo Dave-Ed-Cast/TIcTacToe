@@ -25,8 +25,12 @@ class MatchManager: NSObject, ObservableObject, GKTurnBasedMatchmakerViewControl
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         return windowScene?.windows.first?.rootViewController
     }
+    var gameLogic: GameLogic // Add this property
     
-    override init() {
+    // Existing properties and methods
+    
+    init(gameLogic: GameLogic) { // Add this initializer
+        self.gameLogic = gameLogic
         super.init()
         GKLocalPlayer.local.register(self)
     }
@@ -70,6 +74,7 @@ class MatchManager: NSObject, ObservableObject, GKTurnBasedMatchmakerViewControl
         self.match = match
         // Initialize your game state with the match data
         self.inGame = true
+        GKLocalPlayer.local.register(self)
     }
     
     // MARK: - GKTurnBasedMatchmakerViewControllerDelegate
@@ -89,12 +94,21 @@ class MatchManager: NSObject, ObservableObject, GKTurnBasedMatchmakerViewControl
     
     // MARK: - GKTurnBasedEventListener
     func player(_ player: GKPlayer, receivedTurnEventFor match: GKTurnBasedMatch, didBecomeActive: Bool) {
-        self.match = match
-        // Handle turn events and update the game state
+        // Handle turn events
+        if didBecomeActive {
+            // It's the player's turn, handle the turn event
+            if match.currentParticipant?.player?.gamePlayerID == localPlayer.gamePlayerID {
+                // It's the local player's turn, call makeMove method in GameLogic
+                if let data = match.matchData {
+                    gameLogic.updateGameState(matchData: data)
+                }
+            }
+        }
     }
     
     func player(_ player: GKPlayer, matchEnded match: GKTurnBasedMatch) {
-        // Handle end of match and update the game state
+        // Handle end of match
+        // Example: Show game over screen
         self.isGameOver = true
     }
     
@@ -103,5 +117,24 @@ class MatchManager: NSObject, ObservableObject, GKTurnBasedMatchmakerViewControl
         // Handle invitation acceptance
     }
     
-    // Implement other GKLocalPlayerListener methods as needed
+    // MARK: - GameLogic Communication
+    func sendMoveToMatchManager(index: Int) {
+        // Convert game state to match data and send to MatchManager
+        if let match = self.match {
+            // Convert game state to Data
+            let gameData = try? JSONEncoder().encode(gameLogic.grid)
+            
+            // Check if conversion was successful
+            guard let data = gameData else {
+                print("Failed to encode game data")
+                return
+            }
+            
+            match.endTurn(withNextParticipants: [match.currentParticipant!],
+                          turnTimeout: GKExchangeTimeoutDefault,
+                          match: data,
+                          completionHandler: nil)
+        }
+    }
+
 }

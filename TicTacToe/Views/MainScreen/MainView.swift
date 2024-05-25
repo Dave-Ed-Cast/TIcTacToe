@@ -67,7 +67,7 @@ struct MainView: View {
                             Button(action: {
                                 //empty
                             }) {
-                                NavigationLink(destination: GameView(matchManager: matchManager)) {
+                                NavigationLink(destination: GameView(gameLogic: gameLogic)) {
                                     Text("Play Offline")
                                         .frame(width: 200, height: 70, alignment: .center)
                                         .background(.yellow)
@@ -111,5 +111,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView(currentStep: .constant(0), skipOnboarding: .constant(false), matchManager: MatchManager(), gameLogic: GameLogic())
+    MainView(currentStep: .constant(0), skipOnboarding: .constant(false), matchManager: MatchManager(gameLogic: GameLogic()), gameLogic: GameLogic())
 }

@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum Player {
+enum Player: Codable {
     case X
     case O
 }
 
 class GameLogic: ObservableObject {
-        
+    
     @Published var grid: [Player?] = Array(repeating: nil, count: 9)
     @Published var activePlayer: Player = .X
     @Published var winner: Player? = nil
@@ -31,5 +31,20 @@ class GameLogic: ObservableObject {
     //set winning indices
     func setWinningIndices(indices: [Int]) {
         self.winningIndices = indices
+    }
+    
+    struct GameState: Codable{
+        var grid: [Player?]
+        var activePlayer: Player
+        var winner: Player?
+        var isGameOver: Bool
+        var playerHistory: [Player: [Int]]
+        var moveCountX: Int
+        var moveCountO: Int
+        var totalMoves: Int
+        var winningIndices: [Int]?
+        var rotate: Bool
+        var degrees: Double
+        var offsetPosition: CGSize
     }
 }

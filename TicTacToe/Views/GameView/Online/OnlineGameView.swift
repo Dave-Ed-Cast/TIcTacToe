@@ -1,40 +1,33 @@
 //
-//  GameView.swift
+//  OnlineGameView.swift
 //  TicTacToe
 //
-//  Created by Davide Castaldi on 18/05/24.
+//  Created by Davide Castaldi on 25/05/24.
 //
 
 import SwiftUI
 
-struct GameView: View {
+struct OnlineGameView: View {
     
     @ObservedObject var gameLogic: GameLogic
     @ObservedObject var matchManager: MatchManager
-    
-    init(gameLogic: GameLogic) {
-        self.gameLogic = gameLogic
-        self.matchManager = MatchManager(gameLogic: gameLogic)
-    }
-    
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
-        
         Group {
             VStack {
-                
                 Text("Tria Tactics")
                     .font(.largeTitle)
                     .fontWeight(.black)
                 HStack {
-                    Text("Your turn: ")
+                    Text("Turn of: ")
                         .font(.title)
                         .fontWeight(.semibold)
                     Text("\(gameLogic.activePlayer == .X ? "X" : "O")")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 }
+                
                 .padding()
                 .padding(.bottom, 50)
             }
@@ -55,9 +48,9 @@ struct GameView: View {
                     .font(.title3)
                     .fontWeight(.medium)
                     .cornerRadius(20)
-                    .opacity(gameLogic.isGameOver ?? false ? 1 : 0.5)
+                    .opacity(gameLogic.checkWinner() ? 1 : 0.5)
             }
-            .disabled(!(gameLogic.isGameOver ?? false))
+            .disabled(!gameLogic.checkWinner())
             .padding()
             
         }
@@ -68,7 +61,6 @@ struct GameView: View {
     }
 }
 
-
 #Preview {
-    GameView(gameLogic: GameLogic())
+    OnlineGameView(gameLogic: GameLogic(), matchManager: MatchManager(gameLogic: GameLogic()))
 }

@@ -23,7 +23,7 @@ extension GameLogic {
         
         //do some stuff
         gameActions(index: index)
-                
+        
         //if someone won, prompt the game over
         if checkWinner() {
             winner = activePlayer
@@ -68,6 +68,45 @@ extension GameLogic {
         if totalMoves > 14 {
             rotate = true
         }
+    }
+    
+    func updateGameState(matchData: Data) {
+        do {
+            // Decode the match data into a suitable data structure
+            let gameState = try JSONDecoder().decode(GameState.self, from: matchData)
+            
+            // Update game state properties based on the decoded data
+            grid = gameState.grid
+            activePlayer = gameState.activePlayer
+            winner = gameState.winner
+            isGameOver = gameState.isGameOver
+            moveCountX = gameState.moveCountX
+            moveCountO = gameState.moveCountO
+            totalMoves = gameState.totalMoves
+            playerHistory = gameState.playerHistory
+            degrees = gameState.degrees
+            offsetPosition = gameState.offsetPosition
+        } catch {
+            // Handle decoding errors
+            print("Error decoding match data: \(error)")
+        }
+    }
+    
+    // Method to handle player making a move
+    func makeMove(index: Int) {
+        guard grid[index] == nil && winner == nil else {
+            return
+        }
+        grid[index] = activePlayer
+        gameActions(index: index)
+        if checkWinner() {
+            winner = activePlayer
+            isGameOver = true
+        } else {
+            activePlayer = (activePlayer == .X ? .O : .X)
+        }
+        
+        // TODO: Send updated game state to MatchManager
     }
     
     /// put everything back in place

@@ -13,7 +13,7 @@ struct TicTacToeApp: App {
     @State var skipOnboarding: Bool = false
     var body: some Scene {
         WindowGroup {
-            MainView(onboardingIsCompleted: UserDefaults.standard.bool(forKey: "OnboardingStatus"), currentStep: .constant(0), skipOnboarding: $skipOnboarding, matchManager: MatchManager(), gameLogic: GameLogic())
+            MainView(onboardingIsCompleted: UserDefaults.standard.bool(forKey: "OnboardingStatus"), currentStep: .constant(0), skipOnboarding: $skipOnboarding, matchManager: MatchManager(gameLogic: GameLogic()), gameLogic: GameLogic())
                 .preferredColorScheme(.light)
         }
     }
