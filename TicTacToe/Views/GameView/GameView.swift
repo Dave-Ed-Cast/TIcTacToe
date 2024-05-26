@@ -11,6 +11,21 @@ var countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect
 
 struct GameView: View {
     
+//    class Coordinator: NSObject {
+//        var matchManager: MatchManager
+//        
+//        init(matchManager: MatchManager) {
+//            self.matchManager = matchManager
+//        }
+//        
+//        func playerDidChange(grid: GameView) {
+//            
+//        }
+//    }
+            
+            
+   
+    
     @ObservedObject var matchManager: MatchManager
     @ObservedObject var gameLogic: GameLogic
     
