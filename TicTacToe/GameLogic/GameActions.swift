@@ -22,9 +22,7 @@ extension GameLogic {
         // Optionally, you can inform the other player about the move here
         let message = "move:\(index):\(player.rawValue)"
         matchManager!.sendString(message)
-        
-        // Toggle turns after a move
-//        matchManager!.isLocalPlayerTurn = false
+
     }
     
     /// Everytime the button on the grid is pressed, we give an image to it

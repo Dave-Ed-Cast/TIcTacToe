@@ -123,7 +123,7 @@ class MatchManager: NSObject, ObservableObject {
         case "move":
             if messageSplit.count == 3, let index = Int(messageSplit[1]), let playerSymbol = messageSplit[2].first, let player = Player(rawValue: String(playerSymbol)) {
                 gameLogic?.attemptMove(index: index, player: player)
-//                isLocalPlayerTurn = !isLocalPlayerTurn
+                isLocalPlayerTurn = !isLocalPlayerTurn
             }
         default:
             break
