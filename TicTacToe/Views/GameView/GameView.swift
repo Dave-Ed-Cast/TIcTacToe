@@ -12,7 +12,7 @@ var countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect
 struct GameView: View {
     
     @ObservedObject var matchManager: MatchManager
-    @ObservedObject var gameLogic: GameLogic = GameLogic()
+    @ObservedObject var gameLogic: GameLogic
     
     @Binding var isOffline: Bool
     
@@ -30,12 +30,13 @@ struct GameView: View {
                     .fontWeight(.semibold)
                 HStack {
                     
-                    Text("Your turn: ")
+                    Text("Current turn: ")
                         .font(.title)
                         .fontWeight(.semibold)
-                    Text("\(gameLogic.activePlayer == .X ? "X" : "O")")
+                    Text(matchManager.isLocalPlayerTurn ? "Your Turn" : "Opponent's Turn")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .foregroundStyle(matchManager.isLocalPlayerTurn ? .green : .red)
                 }
                 .padding()
                 .padding(.bottom, 50)
@@ -78,5 +79,5 @@ struct GameView: View {
 
 
 #Preview {
-    GameView(matchManager: MatchManager(), isOffline: .constant(true))
+    GameView(matchManager: MatchManager(), gameLogic: GameLogic(), isOffline: .constant(true))
 }

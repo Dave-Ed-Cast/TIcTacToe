@@ -19,6 +19,7 @@ class MatchManager: NSObject, ObservableObject {
     @Published var lastIndexReceived: Int = 0
     @Published var isTimeKeeper: Bool = false
     @Published var remainingTime = 10
+    @Published var isLocalPlayerTurn: Bool = true
     
     var match: GKMatch?
     var localPlayer: GKLocalPlayer = GKLocalPlayer.local
@@ -75,8 +76,26 @@ class MatchManager: NSObject, ObservableObject {
     }
     
     func sendMove(index: Int, player: Player) {
+        guard isLocalPlayerTurn else {
+            return
+        }
+        
         let moveMessage = "move:\(index):\(player)"
         sendString(moveMessage)
+        
+        // Toggle turns after a move
+        isLocalPlayerTurn = false
+    }
+    
+    func receiveMove(index: Int, player: Player) {
+        // Ensure it's the opponent's turn
+        guard !isLocalPlayerTurn else { return }
+        
+        // Update game state via GameLogic
+        gameLogic?.receiveMove(index: index, player: player)
+        
+        // Toggle turn to local player
+        isLocalPlayerTurn = true
     }
     
     func receivedString(_ message: String) {
@@ -103,7 +122,8 @@ class MatchManager: NSObject, ObservableObject {
             }
         case "move":
             if messageSplit.count == 3, let index = Int(messageSplit[1]), let playerSymbol = messageSplit[2].first, let player = Player(rawValue: String(playerSymbol)) {
-                gameLogic?.receiveMove(index: index, player: player)
+                gameLogic?.attemptMove(index: index, player: player)
+//                isLocalPlayerTurn = !isLocalPlayerTurn
             }
         default:
             break

@@ -9,6 +9,24 @@ import Foundation
 
 extension GameLogic {
     
+    
+    func attemptMove(index: Int, player: Player) {
+        // Ensure it's the local player's turn
+        guard matchManager!.isLocalPlayerTurn else {
+            return
+        }
+        
+        // Execute move logic
+        buttonTap(index: index)
+        
+        // Optionally, you can inform the other player about the move here
+        let message = "move:\(index):\(player.rawValue)"
+        matchManager!.sendString(message)
+        
+        // Toggle turns after a move
+//        matchManager!.isLocalPlayerTurn = false
+    }
+    
     /// Everytime the button on the grid is pressed, we give an image to it
     /// - Parameter index: the index is the pressed spot on the grid
     func buttonTap(index: Int) {
@@ -23,7 +41,7 @@ extension GameLogic {
         
         //do some stuff
         gameActions(index: index)
-                
+        
         matchManager?.sendMove(index: index, player: activePlayer)
         //if someone won, prompt the game over
         if checkWinner() {
@@ -35,20 +53,20 @@ extension GameLogic {
     }
     
     func receiveMove(index: Int, player: Player) {
-            guard grid[index] == nil && winner == nil else {
-                return
-            }
-
-            grid[index] = player
-            gameActions(index: index)
-
-            if checkWinner() {
-                winner = player
-                isGameOver = true
-            } else {
-                activePlayer = (activePlayer == .X) ? .O : .X
-            }
+        guard grid[index] == nil && winner == nil else {
+            return
         }
+                
+        grid[index] = player
+        gameActions(index: index)
+        
+        if checkWinner() {
+            winner = player
+            isGameOver = true
+        } else {
+            activePlayer = (activePlayer == .X) ? .O : .X
+        }
+    }
     //which player touched that grid spot? Give me their name
     func buttonLabel(index: Int) -> String {
         if let player = grid[index] {

@@ -73,7 +73,7 @@ struct MainView: View {
                             Button(action: {
                                 isOffline = true
                             }) {
-                                NavigationLink(destination: GameView(matchManager: matchManager, isOffline: $isOffline)) {
+                                NavigationLink(destination: GameView(matchManager: matchManager, gameLogic: gameLogic, isOffline: $isOffline)) {
                                     Text("Play Offline")
                                         .frame(width: 200, height: 70, alignment: .center)
                                         .background(.yellow)
